@@ -25,15 +25,25 @@ function App() {
     );
   }, [searchInput, dataList]);
 
+  // Function to clear the search input
+  const clearSearch = () => {
+    setSearchInput('');
+  };
+
   return (
     <div className="container">
       <h1>Data Filtering</h1>
-      <input
-        type="text"
-        placeholder="Search..."
-        value={searchInput}
-        onChange={(e) => setSearchInput(e.target.value)}
-      />
+      <div className="search-container">
+        <input
+          type="text"
+          placeholder="Search..."
+          value={searchInput}
+          onChange={(e) => setSearchInput(e.target.value)}
+        />
+        <button className="clear-btn" onClick={clearSearch}>
+          Clear
+        </button>
+      </div>
       <ul>
         {filteredData.map((item) => (
           <li key={item.id}>{item.name}</li>
@@ -44,4 +54,3 @@ function App() {
 }
 
 export default App;
-
