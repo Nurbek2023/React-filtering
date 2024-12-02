@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import './App.css'; // Import the CSS file
+import './App.css';
 
 function App() {
   const [dataList, setDataList] = useState([
@@ -16,16 +16,23 @@ function App() {
   ]);
   const [searchInput, setSearchInput] = useState('');
   const [filteredData, setFilteredData] = useState(dataList);
+  const [loading, setLoading] = useState(false);
 
+  // Effect to filter data whenever searchInput changes
   useEffect(() => {
-    setFilteredData(
-      dataList.filter((item) =>
-        item.name.toLowerCase().includes(searchInput.toLowerCase())
-      )
-    );
+    setLoading(true); // Set loading to true when starting filtering
+    const timer = setTimeout(() => {
+      setFilteredData(
+        dataList.filter((item) =>
+          item.name.toLowerCase().includes(searchInput.toLowerCase())
+        )
+      );
+      setLoading(false); // Set loading to false when filtering is done
+    }, 500); // Simulate a delay
+
+    return () => clearTimeout(timer); // Clean up the timeout on component unmount
   }, [searchInput, dataList]);
 
-  // Function to clear the search input
   const clearSearch = () => {
     setSearchInput('');
   };
@@ -44,15 +51,19 @@ function App() {
           Clear
         </button>
       </div>
-      <ul>
-        {filteredData.length > 0 ? (
-          filteredData.map((item) => (
-            <li key={item.id}>{item.name}</li>
-          ))
-        ) : (
-          <li>No results found</li>
-        )}
-      </ul>
+
+      {/* Display loading spinner while filtering */}
+      {loading ? (
+        <div className="spinner"></div>
+      ) : (
+        <ul>
+          {filteredData.length > 0 ? (
+            filteredData.map((item) => <li key={item.id}>{item.name}</li>)
+          ) : (
+            <li className="no-results">No results found</li>
+          )}
+        </ul>
+      )}
     </div>
   );
 }
