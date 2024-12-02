@@ -45,9 +45,13 @@ function App() {
         </button>
       </div>
       <ul>
-        {filteredData.map((item) => (
-          <li key={item.id}>{item.name}</li>
-        ))}
+        {filteredData.length > 0 ? (
+          filteredData.map((item) => (
+            <li key={item.id}>{item.name}</li>
+          ))
+        ) : (
+          <li>No results found</li>
+        )}
       </ul>
     </div>
   );
