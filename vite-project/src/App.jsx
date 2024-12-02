@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import './App.css';
 
 function App() {
   const [dataList, setDataList] = useState([
@@ -14,7 +15,7 @@ function App() {
     { id: 10, name: 'Jack' },
   ]);
   const [searchInput, setSearchInput] = useState('');
-  const [filteredData, setFilteredData] = useState(dataList);  // Add a state to store filtered data
+  const [filteredData, setFilteredData] = useState(dataList);
 
   // Effect to filter data whenever searchInput changes
   useEffect(() => {
@@ -23,9 +24,9 @@ function App() {
         item.name.toLowerCase().includes(searchInput.toLowerCase())
       )
     );
-  }, [searchInput, dataList]);  // Re-run the effect when searchInput or dataList changes
+  }, [searchInput, dataList]);
 
-  // Function to clear search input
+  // Clear search input
   const clearSearch = () => {
     setSearchInput('');
   };
@@ -39,7 +40,7 @@ function App() {
         value={searchInput}
         onChange={(e) => setSearchInput(e.target.value)} // Update state on input change
       />
-      <button onClick={clearSearch}>Clear</button> {/* Clear button */}
+      <button onClick={clearSearch}>Clear Search</button> {/* Clear search button */}
       <ul>
         {/* Display filtered list */}
         {filteredData.map((item) => (
@@ -51,4 +52,3 @@ function App() {
 }
 
 export default App;
-
