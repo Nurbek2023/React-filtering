@@ -13,7 +13,6 @@ function App() {
     { id: 9, name: 'Isaac' },
     { id: 10, name: 'Jack' },
   ]);
-  
   const [searchInput, setSearchInput] = useState('');
   const [filteredData, setFilteredData] = useState(dataList);  // Add a state to store filtered data
 
@@ -24,36 +23,27 @@ function App() {
         item.name.toLowerCase().includes(searchInput.toLowerCase())
       )
     );
-  }, [searchInput, dataList]);
+  }, [searchInput, dataList]);  // Re-run the effect when searchInput or dataList changes
+
+  // Function to clear search input
+  const clearSearch = () => {
+    setSearchInput('');
+  };
 
   return (
     <div>
-      <h1 style={{ fontSize: '24px', color: '#4CAF50' }}>Data Filtering</h1>
+      <h1>Data Filtering</h1>
       <input
         type="text"
         placeholder="Search..."
         value={searchInput}
         onChange={(e) => setSearchInput(e.target.value)} // Update state on input change
-        style={{
-          padding: '10px',
-          borderRadius: '5px',
-          border: '1px solid #ccc',
-          width: '200px',
-        }}
       />
+      <button onClick={clearSearch}>Clear</button> {/* Clear button */}
       <ul>
         {/* Display filtered list */}
         {filteredData.map((item) => (
-          <li
-            key={item.id}
-            style={{
-              padding: '8px',
-              borderBottom: '1px solid #ddd',
-              marginBottom: '5px',
-            }}
-          >
-            {item.name}
-          </li>
+          <li key={item.id}>{item.name}</li>
         ))}
       </ul>
     </div>
@@ -61,3 +51,4 @@ function App() {
 }
 
 export default App;
+
