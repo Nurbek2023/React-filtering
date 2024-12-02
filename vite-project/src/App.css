@@ -1,57 +1,47 @@
-/* App.css */
-
-/* Style the container */
-div {
+/* src/App.css */
+body {
   font-family: Arial, sans-serif;
+  background-color: #f4f4f9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.container {
   text-align: center;
-  margin-top: 50px;
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 300px;
 }
 
-/* Style the title */
 h1 {
-  color: #4CAF50;
+  color: #333;
 }
 
-/* Style the input field */
 input {
+  width: 100%;
   padding: 10px;
-  font-size: 16px;
-  margin-right: 10px;
-  border-radius: 5px;
+  margin: 20px 0;
   border: 1px solid #ccc;
-  width: 200px;
+  border-radius: 4px;
+  box-sizing: border-box;
 }
 
-/* Style the button */
-button {
-  padding: 10px;
-  font-size: 16px;
-  background-color: #4CAF50;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-/* Style the button on hover */
-button:hover {
-  background-color: #45a049;
-}
-
-/* Style the list */
 ul {
   list-style-type: none;
   padding: 0;
-  margin-top: 20px;
 }
 
-/* Style each list item */
 li {
   padding: 8px;
-  font-size: 18px;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid #eee;
+  font-size: 16px;
 }
 
-li:hover {
-  background-color: #f2f2f2;
+li:last-child {
+  border-bottom: none;
 }

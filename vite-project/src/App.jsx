@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import './App.css';
+import './App.css'; // Import the CSS file
 
 function App() {
   const [dataList, setDataList] = useState([
@@ -16,29 +16,17 @@ function App() {
   ]);
   const [searchInput, setSearchInput] = useState('');
   const [filteredData, setFilteredData] = useState(dataList);
-  const [loading, setLoading] = useState(false); // Loading state
 
-  // Effect to filter data whenever searchInput changes
   useEffect(() => {
-    setLoading(true); // Set loading to true when starting to filter
-    const timer = setTimeout(() => {
-      setFilteredData(
-        dataList.filter((item) =>
-          item.name.toLowerCase().includes(searchInput.toLowerCase())
-        )
-      );
-      setLoading(false); // Set loading to false when filtering is done
-    }, 500); // Simulating a delay for loading state (can be removed in real scenarios)
-
-    return () => clearTimeout(timer); // Clean up timeout on component unmount or input change
+    setFilteredData(
+      dataList.filter((item) =>
+        item.name.toLowerCase().includes(searchInput.toLowerCase())
+      )
+    );
   }, [searchInput, dataList]);
 
-  const clearSearch = () => {
-    setSearchInput('');
-  };
-
   return (
-    <div>
+    <div className="container">
       <h1>Data Filtering</h1>
       <input
         type="text"
@@ -46,19 +34,14 @@ function App() {
         value={searchInput}
         onChange={(e) => setSearchInput(e.target.value)}
       />
-      <button onClick={clearSearch}>Clear Search</button>
-      {loading ? ( // Show loading spinner or message
-        <p>Loading...</p>
-      ) : (
-        <ul>
-          {/* Display filtered list */}
-          {filteredData.map((item) => (
-            <li key={item.id}>{item.name}</li>
-          ))}
-        </ul>
-      )}
+      <ul>
+        {filteredData.map((item) => (
+          <li key={item.id}>{item.name}</li>
+        ))}
+      </ul>
     </div>
   );
 }
 
 export default App;
+
